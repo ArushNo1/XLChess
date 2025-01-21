@@ -727,6 +727,7 @@ public class Chess extends JPanel {
 
 	// main method with standard graphics code
 	public static void main(String[] args) {
+		FontLoader.loadFonts();
 		Chess thisgame = new Chess();
 		ChessPiece.setGame(thisgame);
 		ChessMenu.setGame(thisgame);

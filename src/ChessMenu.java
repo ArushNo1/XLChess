@@ -135,9 +135,16 @@ public class ChessMenu {
 		g.setFont(buttonFont);
 		g.drawString("Play", strX, height * 21 / 24);
 		//ImageIcon boardImage = new ImageIcon("chess\\boards\\board" + sizeSlider.currentVal + ".png");
-		ImageIcon boardImage = new ImageIcon(getClass().getClassLoader().getResource("boards/board" + sizeSlider.currentVal + ".png"));
-		g.drawImage(boardImage.getImage(), 300, 40, 300, 300, null);
+		ImageIcon boardImage = null;
+		java.net.URL imageUrl = getClass().getClassLoader().getResource("boards/board" + sizeSlider.currentVal + ".png");
+		if (imageUrl == null) {
+			System.err.println("Image not found: " + "chess/boards/board" + sizeSlider.currentVal + ".png");
+		} else {
+			boardImage = new ImageIcon(imageUrl);
+			g.drawImage(boardImage.getImage(), 300, 40, 300, 300, null);
+		}
 
+		if(boardImage != null) g.drawImage(boardImage.getImage(), 300, 40, 300, 300, null);
 	}
 
 	public void drawBackArrow(Graphics g) {

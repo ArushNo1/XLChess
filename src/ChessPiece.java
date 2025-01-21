@@ -1,8 +1,8 @@
 
 //Arush Bodla block 5
 import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
 public abstract class ChessPiece {
@@ -154,7 +154,11 @@ public abstract class ChessPiece {
 	public void draw(Graphics g, int boardX, int boardY, int squareSize) {
 		String sideName = isWhite ? "white" : "black";
 		//ImageIcon image = new ImageIcon("chess\\" + sideName + name + ".png");
-		ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource(sideName + name + ".png"));
+		URL url = getClass().getClassLoader().getResource(sideName + name + ".png");
+		if(url == null){
+			System.out.println("Could not find " + sideName + name + ".png");
+		}
+		ImageIcon image = new ImageIcon(url);
 		g.drawImage(image.getImage(), (x - 1) * squareSize + boardX,
 				(chessGame.getSquareCount() - y) * squareSize + boardY, squareSize, squareSize, null);
 	}
@@ -162,7 +166,11 @@ public abstract class ChessPiece {
 	public void drawM(Graphics g, int mouseX, int mouseY, int squareSize) {
 		String sideName = isWhite ? "white" : "black";
 		//ImageIcon image = new ImageIcon("chess\\" + sideName + name + ".png");
-		ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource(sideName + name + ".png"));
+		URL url = getClass().getClassLoader().getResource(sideName + name + ".png");
+		if(url == null){
+			System.out.println("Could not find " + sideName + name + ".png");
+		}
+		ImageIcon image = new ImageIcon(url);
 		g.drawImage(image.getImage(), mouseX - squareSize / 2, mouseY - squareSize / 2, squareSize, squareSize, null);
 	}
 
